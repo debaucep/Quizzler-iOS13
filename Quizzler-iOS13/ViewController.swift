@@ -24,22 +24,24 @@ class ViewController: UIViewController {
     ]
     
     
-
+    
     var questionNumber = 0
+    var timer = Timer()
     
-    
-    func updateUI () {
+    @objc func updateUI () {
         questionLabel.text = quiz[questionNumber].text // question label
-    }
+        trueButton.backgroundColor = .clear
+        falseButton.backgroundColor = .clear
+        progressBar.progress = Float (questionNumber + 1) / Float (quiz.count)
         
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
-    
+        
     }
-
-    
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         
@@ -49,28 +51,30 @@ class ViewController: UIViewController {
         
         if userAnswer == actualAnswer {
             print ("Right")
+            sender.backgroundColor = .green
         } else {
             print ("Wrong")
+            sender.backgroundColor = .orange
         }
         
         // verification of the lenght of the Array with quiz data
-        
-        
         // print ("Question Nr is ... \(questionNumber)")
         
         if questionNumber < quiz.count - 1 {
             questionNumber += 1
         } else {
             questionNumber = 0
+            progressBar.progress = 0.0
         }
         
         //print ("Question Nr is ... \(questionNumber)")
+        //delay 2.0
         
-        updateUI()
         
-        }
-    
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
+        
+        
     }
     
     
-
+}
