@@ -16,16 +16,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var falseButton: UIButton!
     
     let quiz = [
-        ["Moscow is Russia", "True"],
-        ["Oregon is Canada", "False"],
-        ["China is the biggest country on territory basis", "False"]
+        Question(q: "Moscow is Russia", a: "True"),
+        Question(q: "Oregon is Canada", a: "False"),
+        Question(q: "China is the biggest country on territory basis", a: "False"),
+        Question(q: "Moscow was founded in 1247", a: "False"),
+        Question(q: "Gorbachev was the first and they only one president of the USSR", a: "True")
     ]
     
+    
+
     var questionNumber = 0
     
     
     func updateUI () {
-        questionLabel.text = quiz[questionNumber][0] // question label
+        questionLabel.text = quiz[questionNumber].text // question label
     }
         
     
@@ -40,7 +44,7 @@ class ViewController: UIViewController {
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         
         let userAnswer = sender.currentTitle
-        let actualAnswer = quiz[questionNumber][1] // answer from 2d Array
+        let actualAnswer = quiz[questionNumber].answer // answer from ex. 2d Array. Now comes from updated [Question] array.
         
         
         if userAnswer == actualAnswer {
@@ -52,7 +56,7 @@ class ViewController: UIViewController {
         // verification of the lenght of the Array with quiz data
         
         
-        print ("Question Nr is ... \(questionNumber)")
+        // print ("Question Nr is ... \(questionNumber)")
         
         if questionNumber < quiz.count - 1 {
             questionNumber += 1
