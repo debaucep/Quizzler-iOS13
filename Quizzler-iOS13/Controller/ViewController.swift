@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var scoreOutlet: UILabel!
+    
+    
     
     // we are making copy of QuizBrain struct in ViewController
     var quizBrain = QuizBrain ()
@@ -25,7 +28,7 @@ class ViewController: UIViewController {
         progressBar.progress = quizBrain.getProgress()
         trueButton.backgroundColor = .clear
         falseButton.backgroundColor = .clear
-       
+        scoreOutlet.text = "Score: \(quizBrain.increaseScore())"
         
     }
     
